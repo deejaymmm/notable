@@ -8,9 +8,9 @@ const port = 8000;
 
 app.use(bodyParser.urlencoded({ extended: true })); // to read url
 
-MongoClient.connect(db.url, (err, database) => { // connect to db
+MongoClient.connect(db.url, (err, client) => { // connect to db
   if (err) return console.log(err)
-  require('./app/routes')(app, database);
+  require('./app/routes')(app, client);
   app.listen(port, () => { // start server
     console.log('We are live on ' + port);
   });               
